@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Co-Creative Hub</title>
+    <meta name="description" content="The First & Only Co-Creative Space in El Paso" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                green: '#6FAF45',
+                dark: '#070707',
+                gray: '#b3b3b3',
+                surface: '#0e0e0e',
+                border: '#2a2a2a',
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      :root{
+        --green-brand: #6FAF45;
+        --green-soft: rgba(111,175,69,0.15);
+        --green-glow: rgba(111,175,69,0.35);
+        --dark:#070707;
+        --gray:#b3b3b3;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background-color: var(--dark);
+        color: white;
+        overflow-x: hidden;
+      }
+      
+      /* Ensure content sits above background layers */
+      section,
+      header,
+      footer {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Custom selection color */
+      ::selection {
+        background: var(--green-brand);
+        color: var(--dark);
+      }
+
+      /* Custom Typography & Animation Helpers */
+      #explode-text {
+        line-height: 1.1;
+        text-align: center;
+      }
+      
+      .line {
+        display: inline-block;
+        white-space: nowrap; /* Prevent breaking within phrases */
+      }
+      
+      .soft {
+        font-weight: 300;
+        color: var(--gray);
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+        margin-bottom: 0.2em;
+      }
+
+      .strong {
+        font-weight: 900;
+        font-size: clamp(3.2rem, 7vw, 6rem);
+        letter-spacing: -0.02em;
+        line-height: 1;
+      }
+
+      .green {
+        color: var(--green-brand);
+      }
+
+      .char {
+        display: inline-block;
+        will-change: transform, opacity;
+      }
+
+      /* ===== VIDEO BACKGROUND CSS ===== */
+      .video-bg {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .video-bg video {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Desktop default */
+      #video-mobile { 
+        display: none; 
+      }
+
+      /* Mobile overrides */
+      @media (max-width: 768px) {
+        #video-desktop { 
+          display: none; 
+        }
+        #video-mobile { 
+          display: block; 
+        }
+
+        .hero {
+          padding: 6rem 1.5rem 4rem !important;
+          min-height: 100vh;
+        }
+
+        #explode-text {
+          text-align: center;
+          line-height: 1.1;
+        }
+
+        .line.soft {
+          font-size: 1.1rem !important;
+          opacity: 0.6;
+          margin-bottom: .3rem;
+        }
+
+        .line.strong {
+          font-size: 2.6rem !important;
+          font-weight: 900;
+          margin-bottom: .4rem;
+        }
+
+        .subtitle {
+          font-size: .95rem !important;
+          max-width: 90%;
+          margin: 1.5rem auto 2.2rem !important;
+          line-height: 1.5;
+        }
+
+        .cta {
+          width: 100%;
+          max-width: 320px;
+          padding: 1.1rem !important;
+        }
+      }
+
+      /* Overlay para legibilidad */
+      .video-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          rgba(0,0,0,0.65),
+          rgba(0,0,0,0.85)
+        );
+      }
+
+      /* ===== ANNOUNCEMENT BAR ===== */
+      .announcement-bar{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 42px;
+        background: #000;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        z-index: 999;
+        overflow: hidden;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+      }
+
+      .marquee{
+        display: flex;
+        width: max-content;
+        animation: marquee 22s linear infinite;
+      }
+
+      .marquee span{
+        display: inline-block;
+        padding: 0 3rem;
+        color: white;
+        font-size: 0.8rem;
+        letter-spacing: 0.12em;
+        font-weight: 600;
+        white-space: nowrap;
+        transition: color 0.3s ease;
+      }
+
+      .announcement-bar:hover .marquee{
+        animation-play-state: paused;
+      }
+
+      .announcement-bar:hover span{
+        color: var(--green-brand);
+      }
+
+      @keyframes marquee{
+        from{
+          transform: translateX(0);
+        }
+        to{
+          transform: translateX(-50%);
+        }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "three": "https://esm.sh/three@^0.182.0",
+    "gsap/": "https://esm.sh/gsap@^3.14.2/",
+    "gsap": "https://esm.sh/gsap@^3.14.2"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
