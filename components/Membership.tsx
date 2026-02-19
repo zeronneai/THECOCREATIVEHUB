@@ -34,26 +34,44 @@ export const Membership: React.FC = () => {
       </Reveal>
 
       <Reveal delay={0.4}>
-        <form onSubmit={handleSubmit} className="mx-auto max-w-[420px] space-y-4">
-          <input 
-            type="text" 
-            placeholder="Name" 
-            required
-            className="w-full border border-brand-border bg-brand-surface p-4 text-white placeholder-brand-gray focus:border-brand-green focus:outline-none transition-colors"
-          />
-          <input 
-            type="email" 
-            placeholder="Email" 
-            required
-            className="w-full border border-brand-border bg-brand-surface p-4 text-white placeholder-brand-gray focus:border-brand-green focus:outline-none transition-colors"
-          />
-          <button 
-            type="submit" 
-            className="w-full bg-brand-green p-4 font-bold text-black transition-all hover:bg-white hover:scale-[1.02]"
-          >
-            Request Access
-          </button>
-        </form>
+      <form onSubmit={async (e) => {
+  e.preventDefault();
+  const formData = {
+    name: e.target.name.value,
+    email: e.target.email.value,
+  };
+  try {
+    await fetch("https://script.google.com/macros/s/AKfycbwXsNI0YKMtWyL3OuyMsiNfZIuru61o870CRZyYDIrKa_VaGnMrn5-UHjfVP5zt2ucDag/exec", {
+      method: "POST",
+      body: JSON.stringify(formData),
+    });
+    alert("You're on the list! We'll be in touch soon.");
+    e.target.reset();
+  } catch (error) {
+    alert("Something went wrong. Please try again.");
+  }
+}} className="mx-auto max-w-[420px] space-y-4">
+  <input 
+    type="text"
+    name="name"
+    placeholder="Name" 
+    required
+    className="w-full border border-brand-border bg-brand-surface p-4 text-white placeholder-brand-gray focus:border-brand-green focus:outline-none transition-colors"
+  />
+  <input 
+    type="email"
+    name="email"
+    placeholder="Email" 
+    required
+    className="w-full border border-brand-border bg-brand-surface p-4 text-white placeholder-brand-gray focus:border-brand-green focus:outline-none transition-colors"
+  />
+  <button 
+    type="submit" 
+    className="w-full bg-brand-green p-4 font-bold text-black transition-all hover:bg-white hover:scale-[1.02]"
+  >
+    Request Access
+  </button>
+</form>
       </Reveal>
 
     </section>
