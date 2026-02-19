@@ -42,7 +42,7 @@ export const Membership: React.FC = () => {
     phone: e.target.phone.value,
   };
   try {
-    await fetch("https://script.google.com/macros/s/AKfycbwXsNI0YKMtWyL3OuyMsiNfZIuru61o870CRZyYDIrKa_VaGnMrn5-UHjfVP5zt2ucDag/exec", {
+    await fetch("https://script.google.com/macros/s/AKfycbzMrpmr8NW4lMIFTARRdtywVNpDclCGJnvbj0SkFQMFmI-QgAOvah75sxbLwk1xciZ-/exec", {
       method: "POST",
       body: JSON.stringify(formData),
     });
