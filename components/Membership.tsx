@@ -36,9 +36,10 @@ export const Membership: React.FC = () => {
       <Reveal delay={0.4}>
       <form onSubmit={async (e) => {
   e.preventDefault();
-  const formData = {
+ const formData = {
     name: e.target.name.value,
     email: e.target.email.value,
+    phone: e.target.phone.value,
   };
   try {
     await fetch("https://script.google.com/macros/s/AKfycbwXsNI0YKMtWyL3OuyMsiNfZIuru61o870CRZyYDIrKa_VaGnMrn5-UHjfVP5zt2ucDag/exec", {
@@ -65,6 +66,13 @@ export const Membership: React.FC = () => {
     required
     className="w-full border border-brand-border bg-brand-surface p-4 text-white placeholder-brand-gray focus:border-brand-green focus:outline-none transition-colors"
   />
+  <input 
+  type="tel"
+  name="phone"
+  placeholder="Phone Number" 
+  required
+  className="w-full border border-brand-border bg-brand-surface p-4 text-white placeholder-brand-gray focus:border-brand-green focus:outline-none transition-colors"
+/>
   <button 
     type="submit" 
     className="w-full bg-brand-green p-4 font-bold text-black transition-all hover:bg-white hover:scale-[1.02]"
