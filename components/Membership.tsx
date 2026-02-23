@@ -108,7 +108,7 @@ export const Membership: React.FC = () => {
             message: target.message.value, // <-- Se agregó el mensaje al envío
           };
           try {
-            await fetch("https://script.google.com/macros/s/AKfycbzMrpmr8NW4lMIFTARRdtywVNpDclCGJnvbj0SkFQMFmI-QgAOvah75sxbLwk1xciZ-/exec", {
+            await fetch("https://script.google.com/macros/s/AKfycbzPR3gBZ8ABm53vuvK5IXW-rlOpXp5YlTobq8Ae1_90DzwCH-PwszJmQu5bRAG1upPTqg/exec", {
               method: "POST",
               body: JSON.stringify(formData),
             });
