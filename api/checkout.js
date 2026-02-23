@@ -26,6 +26,7 @@ export default async function handler(req, res) {
     res.status(200).json({ url: session.url });
   } catch (error) {
     console.error("Error en Stripe:", error);
-    res.status(500).json({ error: 'Hubo un error al procesar el pago' });
+    // 👇 ESTA ES LA LÍNEA MÁGICA 👇
+    res.status(500).json({ error: error.message });
   }
 }
