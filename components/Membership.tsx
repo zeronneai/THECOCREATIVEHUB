@@ -5,7 +5,7 @@ export const Membership: React.FC = () => {
   return (
     <section id="membership" className="relative bg-gradient-to-br from-[#0c0c0c] to-[#121212] px-6 py-32 text-center sm:px-[10%]">
       
-      {/* --- INICIO NUEVA SECCIÓN DE PRECIOS --- */}
+      {/* --- INICIO SECCIÓN DE PRECIOS --- */}
       <Reveal>
         <h2 className="mb-4 text-4xl font-bold text-white sm:text-5xl">Select Your Pass</h2>
         <p className="mb-10 text-lg text-brand-gray">Join the community. Choose the rhythm that fits your creative process.</p>
@@ -42,10 +42,18 @@ export const Membership: React.FC = () => {
             <button className="w-full rounded border border-brand-green bg-transparent py-3 text-sm font-bold tracking-widest text-brand-green uppercase transition-colors hover:bg-brand-green/10" data-plan="weekly">Select Plan</button>
           </div>
 
-          {/* Month Pass (Most Popular) */}
+          {/* Month Pass (Most Popular & Founding Offer) */}
           <div className="relative rounded-xl border-2 border-brand-green bg-gradient-to-b from-[#111] to-[#0a0f05] p-10 shadow-2xl transition-all hover:-translate-y-1">
-            <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-brand-green px-4 py-1 text-xs font-black uppercase tracking-widest text-black">Most Popular</div>
-            <h3 className="mb-4 text-xl font-semibold">Month Pass</h3>
+            <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-brand-green px-4 py-1 text-xs font-black uppercase tracking-widest text-black">
+              Founding Members Offer
+            </div>
+            <h3 className="mb-2 text-xl font-semibold">Month Pass</h3>
+            
+            {/* Texto de urgencia movido aquí */}
+            <p className="mb-6 text-sm text-brand-gray">
+              Limited to the first <strong className="text-white">44 Founding Members</strong>. Lock your rate.
+            </p>
+
             <div className="mb-8 flex items-baseline justify-center text-5xl font-black text-brand-green">
               <span className="mr-1 text-xl text-white">$</span>89<span className="ml-1 text-lg font-normal text-white">/mo</span>
             </div>
@@ -63,53 +71,48 @@ export const Membership: React.FC = () => {
 
         </div>
       </Reveal>
-      {/* --- FIN NUEVA SECCIÓN DE PRECIOS --- */}
+      {/* --- FIN SECCIÓN DE PRECIOS --- */}
 
 
-      {/* --- TU FORMULARIO ORIGINAL INTACTO --- */}
+      {/* --- SECCIÓN DE FORMULARIO (CONTACTO / DUDAS) --- */}
       <Reveal>
         <span className="mb-6 inline-block border border-brand-green px-5 py-2 text-sm font-bold uppercase tracking-[1.5px] text-white">
-          Founding Members Offer
+          Get In Touch
         </span>
       </Reveal>
 
       <Reveal delay={0.1}>
-        <h2 className="mb-6 text-4xl font-bold sm:text-5xl text-white">Launch Membership</h2>
+        <h2 className="mb-6 text-4xl font-bold sm:text-5xl text-white">Have Questions?</h2>
       </Reveal>
 
       <Reveal delay={0.2}>
-        <div className="my-8 text-[5rem] font-black leading-none text-brand-green">
-          $89<span className="text-2xl font-normal text-white">/mo</span>
-        </div>
-      </Reveal>
-
-      <Reveal delay={0.3}>
         <p className="mx-auto mb-12 max-w-[500px] text-lg text-brand-gray">
-          Limited to the first <strong className="text-white">44 Founding Members</strong>.
-          Lock your rate. Be part of the foundation.
+          Not sure which plan is right for you? Drop us a message and we'll help you figure it out.
         </p>
       </Reveal>
 
-      <Reveal delay={0.4}>
+      <Reveal delay={0.3}>
         <form onSubmit={async (e) => {
           e.preventDefault();
           const target = e.target as typeof e.target & {
             name: { value: string };
             email: { value: string };
             phone: { value: string };
+            message: { value: string };
             reset: () => void;
           };
           const formData = {
             name: target.name.value,
             email: target.email.value,
             phone: target.phone.value,
+            message: target.message.value, // <-- Se agregó el mensaje al envío
           };
           try {
             await fetch("https://script.google.com/macros/s/AKfycbzMrpmr8NW4lMIFTARRdtywVNpDclCGJnvbj0SkFQMFmI-QgAOvah75sxbLwk1xciZ-/exec", {
               method: "POST",
               body: JSON.stringify(formData),
             });
-            alert("You're on the list! We'll be in touch soon.");
+            alert("Message sent! We'll get back to you shortly.");
             target.reset();
           } catch (error) {
             alert("Something went wrong. Please try again.");
@@ -132,15 +135,23 @@ export const Membership: React.FC = () => {
           <input 
             type="tel"
             name="phone"
-            placeholder="Phone Number" 
-            required
+            placeholder="Phone Number (Optional)" 
             className="w-full border border-brand-border bg-brand-surface p-4 text-white placeholder-brand-gray focus:border-brand-green focus:outline-none transition-colors"
           />
+          {/* Nuevo campo para la duda */}
+          <textarea 
+            name="message"
+            placeholder="How can we help you?" 
+            required
+            rows={4}
+            className="w-full resize-none border border-brand-border bg-brand-surface p-4 text-white placeholder-brand-gray focus:border-brand-green focus:outline-none transition-colors"
+          ></textarea>
+          
           <button 
             type="submit" 
             className="w-full bg-brand-green p-4 font-bold text-black transition-all hover:bg-white hover:scale-[1.02]"
           >
-            Request Access
+            Send Message
           </button>
         </form>
       </Reveal>
