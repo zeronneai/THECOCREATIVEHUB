@@ -2,10 +2,36 @@ import React from 'react';
 import { Reveal } from './Reveal';
 
 export const Membership: React.FC = () => {
+  
+  // --- NUEVA FUNCIÓN PARA PROCESAR EL PAGO ---
+  const handleCheckout = async (priceId: string) => {
+    try {
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ priceId }),
+      });
+      
+      const data = await response.json();
+      
+      if (data.url) {
+        // Redirige al usuario a la pantalla de pago de Stripe
+        window.location.href = data.url; 
+      } else {
+        alert("Error loading checkout.");
+      }
+    } catch (error) {
+      console.error("Error redirecting to checkout:", error);
+      alert("Something went wrong. Please try again.");
+    }
+  };
+  // -------------------------------------------
+
   return (
     <section id="membership" className="relative bg-gradient-to-br from-[#0c0c0c] to-[#121212] px-6 py-32 text-center sm:px-[10%]">
       
-      {/* --- INICIO SECCIÓN DE PRECIOS --- */}
       <Reveal>
         <h2 className="mb-4 text-4xl font-bold text-white sm:text-5xl">Select Your Pass</h2>
         <p className="mb-10 text-lg text-brand-gray">Join the community. Choose the rhythm that fits your creative process.</p>
@@ -30,7 +56,13 @@ export const Membership: React.FC = () => {
             <div className="mb-8 flex items-baseline justify-center text-5xl font-black">
               <span className="mr-1 text-xl text-brand-gray">$</span>10<span className="ml-1 text-lg font-normal text-brand-gray">/day</span>
             </div>
-            <button className="w-full rounded border border-brand-green bg-transparent py-3 text-sm font-bold tracking-widest text-brand-green uppercase transition-colors hover:bg-brand-green/10" data-plan="daily">Select Plan</button>
+            {/* REEMPLAZA EL TEXTO ENTRE COMILLAS SIMPLES CON TU PRICE ID DEL PASE DE DÍA */}
+            <button 
+              onClick={() => handleCheckout('prod_U1Q1wBkhZPALhW')} 
+              className="w-full rounded border border-brand-green bg-transparent py-3 text-sm font-bold tracking-widest text-brand-green uppercase transition-colors hover:bg-brand-green/10"
+            >
+              Select Plan
+            </button>
           </div>
 
           {/* Week Pass */}
@@ -39,7 +71,13 @@ export const Membership: React.FC = () => {
             <div className="mb-8 flex items-baseline justify-center text-5xl font-black">
               <span className="mr-1 text-xl text-brand-gray">$</span>25<span className="ml-1 text-lg font-normal text-brand-gray">/week</span>
             </div>
-            <button className="w-full rounded border border-brand-green bg-transparent py-3 text-sm font-bold tracking-widest text-brand-green uppercase transition-colors hover:bg-brand-green/10" data-plan="weekly">Select Plan</button>
+            {/* REEMPLAZA CON TU PRICE ID DEL PASE DE SEMANA */}
+            <button 
+              onClick={() => handleCheckout('prod_U1PzNoAgIdng0y')}
+              className="w-full rounded border border-brand-green bg-transparent py-3 text-sm font-bold tracking-widest text-brand-green uppercase transition-colors hover:bg-brand-green/10"
+            >
+              Select Plan
+            </button>
           </div>
 
           {/* Month Pass (Most Popular & Founding Offer) */}
@@ -48,16 +86,19 @@ export const Membership: React.FC = () => {
               Founding Members Offer
             </div>
             <h3 className="mb-2 text-xl font-semibold">Month Pass</h3>
-            
-            {/* Texto de urgencia movido aquí */}
             <p className="mb-6 text-sm text-brand-gray">
               Limited to the first <strong className="text-white">44 Founding Members</strong>. Lock your rate.
             </p>
-
             <div className="mb-8 flex items-baseline justify-center text-5xl font-black text-brand-green">
               <span className="mr-1 text-xl text-white">$</span>89<span className="ml-1 text-lg font-normal text-white">/mo</span>
             </div>
-            <button className="w-full rounded bg-brand-green py-3 text-sm font-bold tracking-widest text-black uppercase transition-colors hover:bg-white" data-plan="monthly">Select Plan</button>
+            {/* REEMPLAZA CON TU PRICE ID DEL PASE MENSUAL */}
+            <button 
+              onClick={() => handleCheckout('prod_U1PycWIlv9nyZ7')}
+              className="w-full rounded bg-brand-green py-3 text-sm font-bold tracking-widest text-black uppercase transition-colors hover:bg-white"
+            >
+              Select Plan
+            </button>
           </div>
 
           {/* 6-Month Pass */}
@@ -66,15 +107,19 @@ export const Membership: React.FC = () => {
             <div className="mb-8 flex items-baseline justify-center text-5xl font-black">
               <span className="mr-1 text-xl text-brand-gray">$</span>414<span className="ml-1 text-lg font-normal text-brand-gray">/6 mo</span>
             </div>
-            <button className="w-full rounded border border-brand-green bg-transparent py-3 text-sm font-bold tracking-widest text-brand-green uppercase transition-colors hover:bg-brand-green/10" data-plan="semiannual">Select Plan</button>
+            {/* REEMPLAZA CON TU PRICE ID DEL PASE SEMESTRAL */}
+            <button 
+              onClick={() => handleCheckout('prod_U1PyIE0M7IgC4m')}
+              className="w-full rounded border border-brand-green bg-transparent py-3 text-sm font-bold tracking-widest text-brand-green uppercase transition-colors hover:bg-brand-green/10"
+            >
+              Select Plan
+            </button>
           </div>
 
         </div>
       </Reveal>
-      {/* --- FIN SECCIÓN DE PRECIOS --- */}
 
-
-      {/* --- SECCIÓN DE FORMULARIO (CONTACTO / DUDAS) --- */}
+      {/* --- SECCIÓN DE FORMULARIO DE DUDAS INTACTO --- */}
       <Reveal>
         <span className="mb-6 inline-block border border-brand-green px-5 py-2 text-sm font-bold uppercase tracking-[1.5px] text-white">
           Get In Touch
@@ -105,10 +150,10 @@ export const Membership: React.FC = () => {
             name: target.name.value,
             email: target.email.value,
             phone: target.phone.value,
-            message: target.message.value, // <-- Se agregó el mensaje al envío
+            message: target.message.value,
           };
           try {
-            await fetch("https://script.google.com/macros/s/AKfycbzPR3gBZ8ABm53vuvK5IXW-rlOpXp5YlTobq8Ae1_90DzwCH-PwszJmQu5bRAG1upPTqg/exec", {
+            await fetch("https://script.google.com/macros/s/AKfycbzMrpmr8NW4lMIFTARRdtywVNpDclCGJnvbj0SkFQMFmI-QgAOvah75sxbLwk1xciZ-/exec", {
               method: "POST",
               body: JSON.stringify(formData),
             });
@@ -138,7 +183,6 @@ export const Membership: React.FC = () => {
             placeholder="Phone Number (Optional)" 
             className="w-full border border-brand-border bg-brand-surface p-4 text-white placeholder-brand-gray focus:border-brand-green focus:outline-none transition-colors"
           />
-          {/* Nuevo campo para la duda */}
           <textarea 
             name="message"
             placeholder="How can we help you?" 
