@@ -56,7 +56,7 @@ export const Membership: React.FC = () => {
             <div className="mb-8 flex items-baseline justify-center text-5xl font-black">
               <span className="mr-1 text-xl text-brand-gray">$</span>10<span className="ml-1 text-lg font-normal text-brand-gray">/day</span>
             </div>
-            {/* REEMPLAZA EL TEXTO ENTRE COMILLAS SIMPLES CON TU PRICE ID DEL PASE DE DÍA */}
+            {prod_U1Q1wBkhZPALhW}
             <button 
               onClick={() => handleCheckout('prod_U1Q1wBkhZPALhW')} 
               className="w-full rounded border border-brand-green bg-transparent py-3 text-sm font-bold tracking-widest text-brand-green uppercase transition-colors hover:bg-brand-green/10"
@@ -71,7 +71,7 @@ export const Membership: React.FC = () => {
             <div className="mb-8 flex items-baseline justify-center text-5xl font-black">
               <span className="mr-1 text-xl text-brand-gray">$</span>25<span className="ml-1 text-lg font-normal text-brand-gray">/week</span>
             </div>
-            {/* REEMPLAZA CON TU PRICE ID DEL PASE DE SEMANA */}
+            {prod_U1PzNoAgIdng0y}
             <button 
               onClick={() => handleCheckout('prod_U1PzNoAgIdng0y')}
               className="w-full rounded border border-brand-green bg-transparent py-3 text-sm font-bold tracking-widest text-brand-green uppercase transition-colors hover:bg-brand-green/10"
@@ -92,7 +92,7 @@ export const Membership: React.FC = () => {
             <div className="mb-8 flex items-baseline justify-center text-5xl font-black text-brand-green">
               <span className="mr-1 text-xl text-white">$</span>89<span className="ml-1 text-lg font-normal text-white">/mo</span>
             </div>
-            {/* REEMPLAZA CON TU PRICE ID DEL PASE MENSUAL */}
+            {prod_U1PycWIlv9nyZ7}
             <button 
               onClick={() => handleCheckout('prod_U1PycWIlv9nyZ7')}
               className="w-full rounded bg-brand-green py-3 text-sm font-bold tracking-widest text-black uppercase transition-colors hover:bg-white"
@@ -107,7 +107,7 @@ export const Membership: React.FC = () => {
             <div className="mb-8 flex items-baseline justify-center text-5xl font-black">
               <span className="mr-1 text-xl text-brand-gray">$</span>414<span className="ml-1 text-lg font-normal text-brand-gray">/6 mo</span>
             </div>
-            {/* REEMPLAZA CON TU PRICE ID DEL PASE SEMESTRAL */}
+            {prod_U1PyIE0M7IgC4m}
             <button 
               onClick={() => handleCheckout('prod_U1PyIE0M7IgC4m')}
               className="w-full rounded border border-brand-green bg-transparent py-3 text-sm font-bold tracking-widest text-brand-green uppercase transition-colors hover:bg-brand-green/10"
