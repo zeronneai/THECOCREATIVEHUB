@@ -3,7 +3,7 @@ import { Reveal } from './Reveal';
 
 export const Membership: React.FC = () => {
   
-  // --- NUEVA FUNCIÓN PARA PROCESAR EL PAGO ---
+  // --- FUNCIÓN PARA PROCESAR EL PAGO ---
   const handleCheckout = async (priceId: string) => {
     try {
       const response = await fetch('/api/checkout', {
@@ -17,7 +17,6 @@ export const Membership: React.FC = () => {
       const data = await response.json();
       
       if (data.url) {
-        // Redirige al usuario a la pantalla de pago de Stripe
         window.location.href = data.url; 
       } else {
         alert("Error loading checkout.");
@@ -27,7 +26,6 @@ export const Membership: React.FC = () => {
       alert("Something went wrong. Please try again.");
     }
   };
-  // -------------------------------------------
 
   return (
     <section id="membership" className="relative bg-gradient-to-br from-[#0c0c0c] to-[#121212] px-6 py-32 text-center sm:px-[10%]">
@@ -56,9 +54,8 @@ export const Membership: React.FC = () => {
             <div className="mb-8 flex items-baseline justify-center text-5xl font-black">
               <span className="mr-1 text-xl text-brand-gray">$</span>10<span className="ml-1 text-lg font-normal text-brand-gray">/day</span>
             </div>
-            {prod_U1Q1wBkhZPALhW}
             <button 
-              onClick={() => handleCheckout('prod_U1Q1wBkhZPALhW')} 
+              onClick={() => handleCheckout('price_1T3NB9LlPGaR7iEnMpwfdyg4')} 
               className="w-full rounded border border-brand-green bg-transparent py-3 text-sm font-bold tracking-widest text-brand-green uppercase transition-colors hover:bg-brand-green/10"
             >
               Select Plan
@@ -71,9 +68,8 @@ export const Membership: React.FC = () => {
             <div className="mb-8 flex items-baseline justify-center text-5xl font-black">
               <span className="mr-1 text-xl text-brand-gray">$</span>25<span className="ml-1 text-lg font-normal text-brand-gray">/week</span>
             </div>
-            {prod_U1PzNoAgIdng0y}
             <button 
-              onClick={() => handleCheckout('prod_U1PzNoAgIdng0y')}
+              onClick={() => handleCheckout('price_1T3N96LlPGaR7iEnh0vyAVyA')}
               className="w-full rounded border border-brand-green bg-transparent py-3 text-sm font-bold tracking-widest text-brand-green uppercase transition-colors hover:bg-brand-green/10"
             >
               Select Plan
@@ -92,9 +88,8 @@ export const Membership: React.FC = () => {
             <div className="mb-8 flex items-baseline justify-center text-5xl font-black text-brand-green">
               <span className="mr-1 text-xl text-white">$</span>89<span className="ml-1 text-lg font-normal text-white">/mo</span>
             </div>
-            {prod_U1PycWIlv9nyZ7}
             <button 
-              onClick={() => handleCheckout('prod_U1PycWIlv9nyZ7')}
+              onClick={() => handleCheckout('price_1T3N88LlPGaR7iEnJzf8i7DI')}
               className="w-full rounded bg-brand-green py-3 text-sm font-bold tracking-widest text-black uppercase transition-colors hover:bg-white"
             >
               Select Plan
@@ -107,9 +102,8 @@ export const Membership: React.FC = () => {
             <div className="mb-8 flex items-baseline justify-center text-5xl font-black">
               <span className="mr-1 text-xl text-brand-gray">$</span>414<span className="ml-1 text-lg font-normal text-brand-gray">/6 mo</span>
             </div>
-            {prod_U1PyIE0M7IgC4m}
             <button 
-              onClick={() => handleCheckout('prod_U1PyIE0M7IgC4m')}
+              onClick={() => handleCheckout('price_1T3N8lLlPGaR7iEnr94MdDhK')}
               className="w-full rounded border border-brand-green bg-transparent py-3 text-sm font-bold tracking-widest text-brand-green uppercase transition-colors hover:bg-brand-green/10"
             >
               Select Plan
